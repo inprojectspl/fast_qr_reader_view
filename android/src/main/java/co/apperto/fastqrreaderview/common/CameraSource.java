@@ -142,7 +142,9 @@ public class CameraSource {
   public void release() {
     synchronized (processorLock) {
       stop();
-      processingRunnable.release();
+      if (processingRunnable != null) {
+        processingRunnable.release();
+      }
       cleanScreen();
 
       if (frameProcessor != null) {
